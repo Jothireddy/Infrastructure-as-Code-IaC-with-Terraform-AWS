@@ -82,7 +82,7 @@ iac-terraform-aws-gitops/ ├── README.md ├── terraform/ │ ├──
 
 1. **Clone the repository:**
 
-   ```bash
+```
    git clone <repository_url>
   ```
 
@@ -109,7 +109,7 @@ Alternatively, use the provided script:
 chmod +x scripts/deploy.sh
 ./scripts/deploy.sh
 ```
-GitOps via GitHub Actions
+## GitOps via GitHub Actions
 A GitHub Actions workflow is configured in .github/workflows/terraform.yml to run on every commit to the main branch (or via pull requests). Ensure that you add the following secrets to your repository settings:
 
 AWS_ACCESS_KEY_ID
@@ -118,12 +118,12 @@ AWS_DEFAULT_REGION
 
 This CI/CD pipeline will automatically initialize, plan, and apply your Terraform configuration, ensuring that your AWS infrastructure stays in sync with the Git repository.
 
-Configuration Details
+## Configuration Details
 terraform/provider.tf
 Configures the AWS provider using the region specified in variables.tf.
 
 terraform/variables.tf
-Defines parameters such as:
+## Defines parameters such as:
 
 aws_region: AWS region (e.g., us-west-2)
 vpc_cidr: CIDR block for the VPC
@@ -132,7 +132,7 @@ ami_id: AMI to use for the EC2 instance (this example uses a placeholder)
 db_username, db_password: Credentials for the RDS instance (in production, use a more secure method)
 s3_bucket_name: Name for the S3 bucket
 terraform/main.tf
-Contains the resource definitions for:
+## Contains the resource definitions for:
 
 A VPC with a public subnet, Internet Gateway, and route table.
 An EC2 instance.
@@ -141,24 +141,21 @@ An S3 bucket.
 terraform/outputs.tf
 Exports important outputs like the public IP of the EC2 instance, the RDS endpoint, and the S3 bucket name.
 
-Troubleshooting
+## Troubleshooting
 Terraform Init/Apply Errors:
 Ensure your AWS credentials are valid and that you have sufficient permissions.
 
-Resource Conflicts:
+## Resource Conflicts:
 If a resource already exists (e.g., S3 bucket name must be globally unique), modify the variables accordingly.
 
-GitHub Actions Failures:
+## GitHub Actions Failures:
 Check the Actions logs for details and verify that repository secrets are correctly set.
 
-Contributing
+## Contributing
 Contributions are welcome! Please fork this repository and submit pull requests for any enhancements or bug fixes. Ensure that your changes follow best practices for Terraform and AWS security.
 
-License
+## License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 Happy provisioning and GitOps-ing!
 
-yaml
-Copy
-Edit
